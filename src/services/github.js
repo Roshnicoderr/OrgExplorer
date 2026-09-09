@@ -77,6 +77,7 @@ async function fetchWithCache(url, pat) {
   if (res.status === 404) throw new Error('NOT_FOUND')
   if (!res.ok) throw new Error(`HTTP_${res.status}`)
   if(res.status==204){
+    cacheSet(url, [])
     return[]
   }
   const data = await res.json()
